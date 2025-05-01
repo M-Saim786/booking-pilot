@@ -1,0 +1,220 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+}
+.confirmation-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+}
+.left-section, .right-section {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.left-section {
+    flex: 3;
+}
+.right-section {
+    flex: 1;
+    position: sticky;
+    top: 20px;
+    width: 10% !important;
+    height: fit-content;
+    border: 1px solid red;
+}
+h2 {
+    margin: 0 0 20px;
+    color: #333;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.form-group {
+    flex: 1;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #666;
+}
+.form-group select {
+    appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5"><path fill="none" stroke="%23666" stroke-width="2" d="M0 0 L5 5 L10 0"/></svg>') no-repeat right 10px center;
+    background-size: 10px;
+    padding-right: 30px;
+}
+.form-group textarea {
+    height: 100px;
+    resize: none;
+}
+.guest-section {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+.guest-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+}
+.guest-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.guest-content {
+    display: none;
+    padding: 10px 0;
+}
+.guest-content.visible {
+    display: block;
+}
+.right-section img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+.right-section h3 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+.location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.collapsible-section {
+    margin-bottom: 10px;
+}
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.collapsible-header h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #ffca28;
+    font-weight: bold;
+}
+.collapsible-content {
+    display: none;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+.collapsible-content.visible {
+    display: block;
+}
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.price-total {
+    font-weight: bold;
+    color: #333;
+}
+.coupon-section {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.coupon-section input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.coupon-section button {
+    padding: 8px 15px;
+    background-color: #ffca28;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+.coupon-section button:hover {
+    background-color: #ffb300;
+}
+.card-section {
+    margin-top: 20px;
+}
+.card-section label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 14px;
+}
+.terms {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    color: #666;
+    font-size: 14px;
+}
+.terms a {
+    color: #1a73e8;
+    text-decoration: underline;
+}
+.btn-confirm {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffca28;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+.btn-confirm:hover {
+    background-color: #ffb300;
+}

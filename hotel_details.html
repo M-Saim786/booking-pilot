@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./hotel_details.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="buttons">
+                    <div class="btn-free">Free breakfast</div>
+                    <div class="btn-vip">Service VIP</div>
+                </div>
+                <div>
+                    <h1>Dylan Hotel</h1>
+                    <div class="stars">★★★★★</div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Regal Cinemas Battery - <a href="#">View on map</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="icons">
+                    <i class="far fa-heart"></i>
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <div class="rating">
+                    <span class="score">4.0/5</span>
+                    <span class="text">Very Good</span>
+                    <span class="reviews">(5 reviews)</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Image Section -->
+        <div class="main-image-section">
+            <div class="main-image">
+                <img id="carousel-image"
+                    src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmVkcm9vbXxlbnwwfHwwfHx8MA%3D%3D"
+                    alt="Hotel Room">
+                <div class="carousel-controls">
+                    <button onclick="changeImage(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button onclick="changeImage(1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="video-btn">
+                    <i class="fas fa-play-circle"></i> Video
+                </div>
+            </div>
+            <div class="sidebar-right">
+                <div class="price">From £550 /night</div>
+                <div class="map">Show on Map</div>
+                <div class="contact">
+                    <i class="fas fa-user-circle"></i>
+                    admin@bookingpilots.com
+                    <span class="verified"><i class="fas fa-check-circle"></i></span>
+                    <span>Member since Mar 2024</span>
+                </div>
+                <div class="why-book">Why Book With Us?</div>
+                <div class="why-book-items">
+                    <div><i class="fas fa-star"></i> No-hassle best price guarantee</div>
+                    <div><i class="fas fa-headset"></i> Customer care available 24/7</div>
+                    <div><i class="fas fa-star"></i> Hand-picked Tours & Activities</div>
+                    <div><i class="fas fa-plane"></i> Free Travel Insurance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Section -->
+        <div class="description-section">
+            <div class="gallery" id="gallery">
+                <!-- Images will be dynamically populated by JavaScript -->
+            </div>
+            <h2>Description</h2>
+            <p>Built in 1986, Hotel Stanford is a distinct addition to New York (NY) and a smart choice for travelers.
+                The excitement of the city center is only 0 KM away. No less exceptional is the hotel’s easy access to
+                the city’s myriad attractions and landmarks, such as Toto Music Studio, British Virgin Islands Tourist
+                Board, L’Atelier Du Chocolat. Start and end in San Francisco! With the in-depth cultural tour Northern
+                California Summer 2019, you have a 8 day tour package taking you through San Francisco, USA and 9 other
+                destinations in USA. Northern California Summer 2019 includes accommodation as well as an expert guide,
+                meals, transport and more.</p>
+            <h2>Highlights</h2>
+            <ul class="highlights">
+                <li>Visit the Museum of Modern Art in Manhattan</li>
+                <li>See amazing works of contemporary art, including Vincent van Gogh’s The Starry Night</li>
+                <li>Check out Campbell’s Soup Cans by Warhol and The Dance (I) by Matisse</li>
+                <li>Behold masterpieces by Gauguin, Dali, Picasso, and Pollock</li>
+                <li>Enjoy free audio guides available in English, French, German, Italian, Spanish, Portuguese</li>
+            </ul>
+        </div>
+
+        <!-- Booking Section -->
+        <div class="booking-section">
+            <h2>Select Your Room</h2>
+            <div class="tabs">
+                <div id="book-tab" class="active">BOOK</div>
+                <div id="enquiry-tab">ENQUIRY</div>
+            </div>
+            <div id="book-content">
+                <div class="booking-form">
+                    <div class="form-group">
+                        <label>Check In - Out</label>
+                        <div class="date-group">
+                            <input type="date" id="check-in" value="2025-05-01">
+                            <input type="date" id="check-out" value="2025-05-02">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Guests</label>
+                        <div class="guests-section">
+                            <div class="guests-input" onclick="toggleGuestsDropdown()">
+                                <span id="guests-display">1 Adult - 0 Child</span>
+                                <span class="chevron">▼</span>
+                            </div>
+                            <div class="guests-dropdown" id="guests-dropdown">
+                                <div class="guest-row">
+                                    <span>Adults</span>
+                                    <div class="counter">
+                                        <button onclick="updateGuests('adults', -1)" id="adults-minus">-</button>
+                                        <span id="adults-count">1</span>
+                                        <button onclick="updateGuests('adults', 1)">+</button>
+                                    </div>
+                                </div>
+                                <div class="guest-row">
+                                    <span>Children</span>
+                                    <div class="counter">
+                                        <button onclick="updateGuests('children', -1)" id="children-minus">-</button>
+                                        <span id="children-count">0</span>
+                                        <button onclick="updateGuests('children', 1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-check" onclick="showHotels()">CHECK AVAILABILITY</button>
+                </div>
+                <div id="hotel-list">
+                    <div class="hotel-card" data-price="350">
+                        <img src="https://via.placeholder.com/120x80?text=Room+Kerama+Islands"
+                            alt="Room Kerama Islands">
+                        <div class="hotel-info">
+                            <h3>Room Kerama Islands</h3>
+                            <div class="hotel-details">
+                                <span>200 sq.ft</span>
+                                <span>×2</span>
+                                <span>×9</span>
+                                <span>×2</span>
+                            </div>
+                        </div>
+                        <div class="price-room-selector">
+                            <div class="price">£9,800/28 nights</div>
+                            <div class="room-selector">
+                                <select onchange="updatePopup(this)">
+                                    <option value="0">0</option>
+                                    <option value="1">1 room (£9,800)</option>
+                                    <option value="2">2 rooms (£19,600)</option>
+                                    <option value="3">3 rooms (£29,400)</option>
+                                    <option value="4">4 rooms (£39,200)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-card" data-price="350">
+                        <img src="https://via.placeholder.com/120x80?text=Room+Sheraton+Hotel"
+                            alt="Room Sheraton Hotel">
+                        <div class="hotel-info">
+                            <h3>Room Sheraton Hotel</h3>
+                            <div class="hotel-details">
+                                <span>200 sq.ft</span>
+                                <span>×4</span>
+                                <span>×5</span>
+                                <span>×5</span>
+                            </div>
+                        </div>
+                        <div class="price-room-selector">
+                            <div class="price">£9,800/28 nights</div>
+                            <div class="room-selector">
+                                <select onchange="updatePopup(this)">
+                                    <option value="0">0</option>
+                                    <option value="1">1 room (£9,800)</option>
+                                    <option value="2">2 rooms (£19,600)</option>
+                                    <option value="3">3 rooms (£29,400)</option>
+                                    <option value="4">4 rooms (£39,200)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-card" data-price="350">
+                        <img src="https://via.placeholder.com/120x80?text=Double+Room+Town+View"
+                            alt="Double Room with Town View">
+                        <div class="hotel-info">
+                            <h3>Double Room with Town View</h3>
+                            <div class="hotel-details">
+                                <span>200 sq.ft</span>
+                                <span>×5</span>
+                                <span>×9</span>
+                                <span>×4</span>
+                            </div>
+                        </div>
+                        <div class="price-room-selector">
+                            <div class="price">£9,800/28 nights</div>
+                            <div class="room-selector">
+                                <select onchange="updatePopup(this)">
+                                    <option value="0">0</option>
+                                    <option value="1">1 room (£9,800)</option>
+                                    <option value="2">2 rooms (£19,600)</option>
+                                    <option value="3">3 rooms (£29,400)</option>
+                                    <option value="4">4 rooms (£39,200)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hotel-card" data-price="350">
+                        <img src="https://via.placeholder.com/120x80?text=Standard+Double+Room"
+                            alt="Standard Double Room">
+                        <div class="hotel-info">
+                            <h3>Standard Double Room</h3>
+                            <div class="hotel-details">
+                                <span>200 sq.ft</span>
+                                <span>×4</span>
+                                <span>×6</span>
+                                <span>×3</span>
+                            </div>
+                        </div>
+                        <div class="price-room-selector">
+                            <div class="price">£9,800/28 nights</div>
+                            <div class="room-selector">
+                                <select onchange="updatePopup(this)">
+                                    <option value="0">0</option>
+                                    <option value="1">1 room (£9,800)</option>
+                                    <option value="2">2 rooms (£19,600)</option>
+                                    <option value="3">3 rooms (£29,400)</option>
+                                    <option value="4">4 rooms (£39,200)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="booking-summary" id="booking-summary">
+                    <div class="extras">
+                        <label><input type="checkbox" id="vip" onchange="updateTotal()"> Service VIP (£200)</label>
+                        <label><input type="checkbox" id="breakfast" onchange="updateTotal()"> Breakfasts (£100)</label>
+                    </div>
+                    <div class="summary-details">
+                        <div>
+                            <div>Total Room: <span id="total-rooms">0</span></div>
+                            <div>Service fee: £100</div>
+                        </div>
+                        <div class="total-price" id="total-price">Total Price: £0</div>
+                    </div>
+                    <button class="btn-book" onclick="bookNow()">Book Now</button>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="popup-overlay" id="popup-overlay"></div>
+        <div class="popup" id="popup">
+            <div class="extras">
+                <h3>Double Room with Town View</h3>
+                <label><input type="checkbox" id="vip" onchange="updateTotal()"> Service VIP (£200)</label>
+                <label><input type="checkbox" id="breakfast" onchange="updateTotal()"> Breakfast (£100)</label>
+            </div>
+            <div class="total">
+                <div>
+                    <div>Total Room: <span id="total-rooms">0</span></div>
+                    <div>Service fee: £100</div>
+                </div>
+                <div class="total-price" id="total-price">Total Price: £0</div>
+            </div>
+            <br>
+            <button class="btn-book" onclick="bookNow()">Book Now</button>
+        </div>
+
+
+
+
+        <!-- Enquiry Modal -->
+        <div id="enquiry-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Enquiry</h2>
+                <div class="form-group">
+                    <label>Name <span>*</span></label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email <span>*</span></label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel">
+                </div>
+                <div class="form-group">
+                    <label>Note</label>
+                    <textarea></textarea>
+                </div>
+                <div class="buttons">
+                    <button class="btn-close" onclick="closeModal()">Close</button>
+                    <button class="btn-send">Send now</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Property Types -->
+        <div class="property-types">
+            <h2>Property Type</h2>
+            <div class="types">
+                <span><i class="fas fa-building"></i> Apartments</span>
+                <span><i class="fas fa-hotel"></i> Hotels</span>
+                <span><i class="fas fa-home"></i> Homestays</span>
+                <span><i class="fas fa-villa"></i> Villas</span>
+                <span><i class="fas fa-sign"></i> Motels</span>
+                <span><i class="fas fa-umbrella-beach"></i> Resorts</span>
+                <span><i class="fas fa-campground"></i> Lodges</span>
+                <span><i class="fas fa-house-user"></i> Holiday homes</span>
+                <span><i class="fas fa-ship"></i> Cruises</span>
+            </div>
+        </div>
+
+        <!-- Facilities -->
+        <div class="facilities">
+            <h2>Facilities</h2>
+            <div class="items">
+                <span><i class="fas fa-clock"></i> Wake-up call</span>
+                <span><i class="fas fa-car"></i> Car hire</span>
+                <span><i class="fas fa-bicycle"></i> Bicycle hire</span>
+                <span><i class="fas fa-tv"></i> Flat TV</span>
+                <span><i class="fas fa-recycle"></i> Laundry and dry cleaning</span>
+                <span><i class="fas fa-wifi"></i> Internet – Wifi</span>
+                <span><i class="fas fa-coffee"></i> Coffee and tea</span>
+            </div>
+        </div>
+
+        <!-- Hotel Services -->
+        <div class="hotel-services">
+            <h2>Hotel Service</h2>
+            <div class="items">
+                <span><i class="fas fa-cocktail"></i> Havana Lobby bar</span>
+                <span><i class="fas fa-utensils"></i> Fiesta Restaurant</span>
+                <span><i class="fas fa-suitcase"></i> Free luggage deposit</span>
+                <span><i class="fas fa-tshirt"></i> Laundry Services</span>
+                <span><i class="fas fa-paw"></i> Pets welcome</span>
+                <span><i class="fas fa-ticket-alt"></i> Tickets</span>
+            </div>
+        </div>
+
+        <!-- Hotel Rules -->
+        <div class="hotel-rules">
+            <h2>Hotel Rules - Policies</h2>
+            <div class="rule">
+                <div class="label">Check In</div>
+                <div class="value">12:00AM</div>
+            </div>
+            <div class="rule">
+                <div class="label">Check Out</div>
+                <div class="value">11:00AM</div>
+            </div>
+            <div class="policies">
+                <h3>Guarantee Policy</h3>
+                <ul>
+                    <li>A valid credit card will be required upon booking;</li>
+                    <li>For credit card reservations, the same card(s) must be presented upon check in at the respective
+                        hotels;</li>
+                    <li>Management reserves the right to cancel any reservations without notice if we are notified of
+                        any fraud or illegal activities associated with the full payments received.</li>
+                </ul>
+            </div>
+            <div class="policies">
+                <h3>Children Policy</h3>
+                <ul>
+                    <li>Child under 5-year old: free of charge.</li>
+                    <li>Child from 5-year old to under 12-year old: surcharge $10/person/room/night.</li>
+                    <li>Child from 12-year old or extra Adult: surcharge $15/person/room/night.</li>
+                </ul>
+            </div>
+            <div class="policies hidden" id="cancellation-policy">
+                <h3>Cancellation/Amendment Policy</h3>
+                <ul>
+                    <li>If cancellation/amendment is made 72 hours prior to your arrival date, no fee will be charged.
+                    </li>
+                    <li>If cancellation/amendment is made within 72 hours, including reservations made within 72 hours
+                        of your arrival, 1st night's room rate and tax will be charged.</li>
+                    <li>In case of no-show, 100% room rate and tax will be charged.</li>
+                    <li>Early Bird/Long Stay/Last Min/Package Rates are Non - changeable & Non - refundable</li>
+                </ul>
+            </div>
+            <div class="policies hidden" id="late-checkout-policy">
+                <h3>Late Check-Out Policy</h3>
+                <ul>
+                    <li>Late check-out is subject to room availability</li>
+                    <li>12:00 to 17:00 check-out: 50% room rate surcharge</li>
+                    <li>After 17:00 check-out: 100% room rate surcharge</li>
+                </ul>
+            </div>
+            <div class="show-all" onclick="togglePolicies()">Show All</div>
+            <div class="show-less" onclick="togglePolicies()">Show Less</div>
+        </div>
+
+        <!-- Location -->
+        <div class="location">
+            <h2>Location</h2>
+            <div class="map">Map Placeholder</div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="summary">
+                <div class="rating">
+                    <div class="score">4.0/5</div>
+                    <div class="text">Very Good</div>
+                    <div class="count">From 5 reviews</div>
+                </div>
+                <div class="bars">
+                    <div class="bar">
+                        <div class="label">Excellent</div>
+                        <div class="progress">
+                            <div class="fill" style="width: 100%;"></div>
+                        </div>
+                        <div class="count">5</div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">Very Good</div>
+                        <div class="progress">
+                            <div class="fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">Average</div>
+                        <div class="progress">
+                            <div class="fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">Poor</div>
+                        <div class="progress">
+                            <div class="fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="count">0</div>
+                    </div>
+                    <div class="bar">
+                        <div class="label">Terrible</div>
+                        <div class="progress">
+                            <div class="fill" style="width: 0%;"></div>
+                        </div>
+                        <div class="count">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-list">
+                <div class="title">Showing 1 - 5 of 5 total</div>
+                <div class="review-item">
+                    <div class="avatar"></div>
+                    <div class="content">
+                        <div class="header">
+                            <div class="name">Ivana Mccormick</div>
+                            <div class="date">03/23/2024 10:09</div>
+                        </div>
+                        <div class="rating">
+                            <span class="score">4/5</span>
+                            <span class="title">Easy way to discover the city</span>
+                        </div>
+                        <p>Eum eu sumo albucius perfecto, commodo torquatos consequuntur pro ut, id posse splendide ius.
+                            Cu nisl putent omittantur usu, mutat atomorum ex pro, ius nibh nonummy id. Nam at eius
+                            dissentias disputando, molestie mnesarchum complectitur per te</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Carousel functionality
+        const images = [
+            "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmVkcm9vbXxlbnwwfHwwfHx8MA%3D%3D",
+            "https://media.licdn.com/dms/image/v2/D4D10AQGmD4YNchUoGw/image-pad_100_100/image-pad_100_100/0/1711472448551?e=1746291600&v=beta&t=G6agqYdKOhk_uEqg45VOHv8rLL7A90-OvpOGtFe5Dus",
+            "https://placehold.co/800x300?text=Image+3",
+            "https://placehold.co/800x300?text=Image+4"
+        ];
+        let currentImageIndex = 0;
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            const imageElement = document.getElementById("carousel-image");
+            imageElement.src = images[currentImageIndex];
+        }
+
+        // Populate gallery with images from the slider
+        function populateGallery() {
+            const gallery = document.getElementById("gallery");
+            gallery.innerHTML = ""; // Clear existing images
+            images.forEach((src, index) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = `Gallery Image ${index + 1}`;
+                gallery.appendChild(img);
+            });
+        }
+
+        // Call the function to populate the gallery when the page loads
+        window.onload = populateGallery;
+
+        // Show All/Show Less functionality
+        function togglePolicies() {
+            const hiddenPolicies = document.querySelectorAll(".policies.hidden");
+            const showAll = document.querySelector(".show-all");
+            const showLess = document.querySelector(".show-less");
+
+            hiddenPolicies.forEach(policy => {
+                if (policy.style.display === "block") {
+                    policy.style.display = "none";
+                    policy.classList.add("hidden");
+                } else {
+                    policy.style.display = "block";
+                    policy.classList.remove("hidden");
+                }
+            });
+
+            if (showAll.style.display === "none") {
+                showAll.style.display = "block";
+                showLess.style.display = "none";
+            } else {
+                showAll.style.display = "none";
+                showLess.style.display = "block";
+            }
+        }
+
+        // Modal functionality
+        const enquiryTab = document.getElementById("enquiry-tab");
+        const bookTab = document.getElementById("book-tab");
+        const bookContent = document.getElementById("book-content");
+        const modal = document.getElementById("enquiry-modal");
+
+        enquiryTab.onclick = function () {
+            modal.style.display = "flex";
+            bookTab.classList.remove("active");
+            enquiryTab.classList.add("active");
+            bookContent.style.display = "none";
+        };
+
+        bookTab.onclick = function () {
+            bookTab.classList.add("active");
+            enquiryTab.classList.remove("active");
+            bookContent.style.display = "block";
+            modal.style.display = "none";
+        };
+
+        function closeModal() {
+            modal.style.display = "none";
+            bookTab.classList.add("active");
+            enquiryTab.classList.remove("active");
+            bookContent.style.display = "block";
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
+        // booking-section
+        let totalRooms = 0;
+        let basePrice = 0;
+        let serviceFee = 100;
+
+        function toggleGuestsDropdown() {
+            const dropdown = document.getElementById('guests-dropdown');
+            dropdown.classList.toggle('visible');
+        }
+
+        function updateGuests(type, change) {
+            const countElement = document.getElementById(`${type}-count`);
+            let count = parseInt(countElement.textContent);
+            count = Math.max(type === 'adults' ? 1 : 0, count + change);
+
+            countElement.textContent = count;
+
+            const adults = parseInt(document.getElementById('adults-count').textContent);
+            const children = parseInt(document.getElementById('children-count').textContent);
+            document.getElementById('guests-display').textContent = `${adults} Adult${adults !== 1 ? 's' : ''} - ${children} Child${children !== 1 ? 'ren' : ''}`;
+
+            document.getElementById('adults-minus').disabled = adults <= 1;
+            document.getElementById('children-minus').disabled = children <= 0;
+        }
+
+        function showHotels() {
+            const hotelCards = document.querySelectorAll('.hotel-card');
+            hotelCards.forEach(card => card.classList.add('visible'));
+        }
+
+        function updatePopup(selectElement) {
+            const hotelCard = selectElement.closest('.hotel-card');
+            const pricePerRoom = parseInt(hotelCard.getAttribute('data-price'));
+            const rooms = parseInt(selectElement.value);
+
+            totalRooms = 0;
+            basePrice = 0;
+
+            document.querySelectorAll('.room-selector select').forEach(select => {
+                const roomsSelected = parseInt(select.value);
+                const card = select.closest('.hotel-card');
+                const cardPrice = parseInt(card.getAttribute('data-price'));
+                totalRooms += roomsSelected;
+                basePrice += roomsSelected * cardPrice;
+            });
+
+            if (totalRooms > 0) {
+                document.getElementById('popup').classList.add('visible');
+                document.getElementById('popup-overlay').classList.add('visible');
+                updateTotal();
+            } else {
+                document.getElementById('popup').classList.remove('visible');
+                document.getElementById('popup-overlay').classList.remove('visible');
+            }
+        }
+
+        function updateTotal() {
+            let total = basePrice + serviceFee;
+
+            if (document.getElementById('vip').checked) {
+                total += 200;
+            }
+            if (document.getElementById('breakfast').checked) {
+                total += 100;
+            }
+
+            document.getElementById('total-rooms').textContent = totalRooms;
+            document.getElementById('total-price').textContent = `Total Price: £${total}`;
+        }
+
+
+        function bookNow() {
+            // alert('Booking confirmed!');
+            window.location.href = 'booking_form.html';
+            document.getElementById('popup').classList.remove('visible');
+            document.getElementById('popup-overlay').classList.remove('visible');
+        }
+    </script>
+</body>
+
+</html>

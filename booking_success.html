@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            /* background-color: #fff; */
+            border-radius: 10px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+            /* width: 900px; */
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .left-section,
+        .right-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .left-section {
+            flex: 2;
+            padding: 20px;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .confirmation-message {
+            display: flex;
+            align-items: center;
+            background-color: #fff4d6;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .confirmation-message svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        h2 {
+            font-size: 16px;
+            color: #333;
+            margin: 0 0 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        h2 .toggle-icon {
+            width: 12px;
+            height: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 8px;
+        }
+
+        .label {
+            flex: 1;
+            color: #666;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .value {
+            flex: 2;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .hotel-name {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .location {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .location svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+
+        .booking-details,
+        .payment-details {
+            margin-bottom: 20px;
+        }
+
+        .booking-details .info-row,
+        .payment-details .info-row {
+            margin-bottom: 5px;
+        }
+
+        .payment-details .value {
+            text-align: right;
+            flex: 1;
+        }
+
+        .payment-details .label {
+            flex: 2;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-fee {
+            display: flex;
+            align-items: center;
+        }
+
+        .service-fee svg {
+            width: 12px;
+            height: 12px;
+            margin-left: 5px;
+        }
+
+        .total {
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #f5c518;
+            color: #333;
+            text-align: center;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        .collapsible-content {
+            display: block;
+        }
+
+        .collapsible-content.hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-section">
+            <div class="confirmation-message">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="12" fill="#F5C518" />
+                    <path d="M8 12.5L11 15.5L16 9.5" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+                <span>Thank You. Your booking was submitted successfully! Booking details has been sent to
+                    qwijoy@mailinator.com</span>
+            </div>
+            <h2>YOUR INFORMATION</h2>
+            <div class="info-row">
+                <span class="label">First name</span>
+                <span class="value">Derek</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Last name</span>
+                <span class="value">Berg</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email</span>
+                <span class="value">qwijoy@mailinator.com</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Phone</span>
+                <span class="value">+1 (808) 497-5256</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Address line 1</span>
+                <span class="value">269 West Milton Street</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Address line 2</span>
+                <span class="value">Velit est nihil dolor</span>
+            </div>
+            <div class="info-row">
+                <span class="label">City</span>
+                <span class="value">Amet saepe eius ut</span>
+            </div>
+            <div class="info-row">
+                <span class="label">State/Province/Region</span>
+                <span class="value">Laudantium exercitation</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Zip code/Postal code</span>
+                <span class="value">89790</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Country</span>
+                <span class="value">Nauru</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Special requirement</span>
+                <span class="value">Sit sed neque omnis</span>
+            </div>
+            <button class="button">BOOKING HISTORY</button>
+        </div>
+
+        <div class="right-section">
+            <img src="https://bookingpilotsv2.zotecsoft.work/uploads/mytravel/space/space-2.jpg" alt="Hotel Image" class="hotel-image">
+            <div class="hotel-name">Dylan Hotel</div>
+            <div class="location">
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8 1C5.23858 1 3 3.23858 3 6C3 9.5 8 15 8 15C8 15 13 9.5 13 6C13 3.23858 10.7614 1 8 1ZM8 8C6.89543 8 6 7.10457 6 6C6 4.89543 6.89543 4 8 4C9.10457 4 10 4.89543 10 6C10 7.10457 9.10457 8 8 8Z"
+                        fill="#666" />
+                </svg>
+                Regal Cinemas Battery
+            </div>
+            <div class="booking-details">
+                <h2 onclick="toggleSection('booking-details-content', 'booking-toggle-icon')">
+                    BOOKING DETAIL
+                    <svg class="toggle-icon" id="booking-toggle-icon" viewBox="0 0 12 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 4L6 8L10 4" stroke="#F5C518" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </h2>
+                <div id="booking-details-content" class="collapsible-content">
+                    <div class="info-row">
+                        <span class="label">Start date:</span>
+                        <span class="value">05/02/2025</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">End date:</span>
+                        <span class="value">05/09/2025</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Nights:</span>
+                        <span class="value">7</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Adults:</span>
+                        <span class="value">1</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Children:</span>
+                        <span class="value">3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-details">
+                <h2 onclick="toggleSection('payment-details-content', 'payment-toggle-icon')">
+                    Payment
+                    <svg class="toggle-icon" id="payment-toggle-icon" viewBox="0 0 12 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 4L6 8L10 4" stroke="#F5C518" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </h2>
+                <div id="payment-details-content" class="collapsible-content">
+                    <div class="info-row">
+                        <span class="label">Room Kerama Islands</span>
+                        <span class="value">£4,900</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">+ 2</span>
+                        <span class="value"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Fees:</span>
+                        <span class="value"></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label service-fee">
+                            Service fee
+                            <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="6" cy="6" r="5.5" fill="#333" stroke="#333" />
+                                <path d="M6 3V6.5M6 9H6.01" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <span class="value">£100</span>
+                    </div>
+                    <div class="info-row total">
+                        <span class="label">Total:</span>
+                        <span class="value">£5,000</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Paid:</span>
+                        <span class="value">£0</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Remain:</span>
+                        <span class="value">£5,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleSection(sectionId, iconId) {
+            const content = document.getElementById(sectionId);
+            const icon = document.getElementById(iconId);
+            content.classList.toggle('hidden');
+            const isHidden = content.classList.contains('hidden');
+            icon.innerHTML = isHidden
+                ? '<path d="M4 2L8 6L4 10" stroke="#F5C518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+                : '<path d="M2 4L6 8L10 4" stroke="#F5C518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        }
+    </script>
+</body>
+
+</html>

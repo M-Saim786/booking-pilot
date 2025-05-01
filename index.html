@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Search Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="booking-form">
+                <h3>LOCATION</h3>
+                <div class="form-group location-group">
+                    <i class="fas fa-map-marker-alt location-icon"></i>
+                    <select id="location-select">
+                        <option value="" disabled selected>Where are you going?</option>
+                        <option value="paris">Paris</option>
+                        <option value="new-york">New York, United States</option>
+                        <option value="california">California</option>
+                        <option value="los-angeles">Los Angeles</option>
+                        <option value="new-jersey">New Jersey</option>
+                        <option value="san-francisco">San Francisco</option>
+                    </select>
+                </div>
+
+                <h3>CHECK IN - OUT</h3>
+                <div class="date-group">
+                    <i class="fas fa-calendar-alt calendar-icon"></i>
+                    <input type="date" id="check-in" value="2025-04-30">
+                    <span>-</span>
+                    <input type="date" id="check-out" value="2025-05-01">
+                </div>
+
+                <h3>GUESTS</h3>
+                <div class="guests-section">
+                    <div class="guests-input" onclick="toggleGuestsDropdown()">
+                        <i class="fas fa-users"></i>
+                        <span id="guests-display">1 Adult - 0 Child</span>
+                        <i class="fas fa-chevron-down chevron"></i>
+                    </div>
+                    <div class="guests-dropdown" id="guests-dropdown">
+                        <div class="guest-row">
+                            <span>Adults</span>
+                            <div class="counter">
+                                <button onclick="updateGuests('adults', -1)" id="adults-minus">-</button>
+                                <span id="adults-count">1</span>
+                                <button onclick="updateGuests('adults', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="guest-row">
+                            <span>Children</span>
+                            <div class="counter">
+                                <button onclick="updateGuests('children', -1)" id="children-minus">-</button>
+                                <span id="children-count">0</span>
+                                <button onclick="updateGuests('children', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="search-btn" type="button">
+                    <i class="fas fa-search"></i>
+                    Search</button>
+
+            </div>
+
+            <div class="map">Show on Map</div>
+            <h3>PRICE RANGE (£)</h3>
+            <input type="range" min="300" max="900" value="300">
+            <div class="filter-section" id="hotel-star-section">
+                <div class="heading" onclick="toggleCollapse('hotel-star-section')">
+                    <h3>HOTEL STAR</h3>
+                    <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="content">
+                    <label><input type="checkbox"> ★★★★★</label>
+                    <label><input type="checkbox"> ★★★★</label>
+                    <label><input type="checkbox"> ★★★</label>
+                    <label><input type="checkbox"> ★★</label>
+                </div>
+            </div>
+            <div class="filter-section" id="review-score-section">
+                <div class="heading" onclick="toggleCollapse('review-score-section')">
+                    <h3>REVIEW SCORE</h3>
+                    <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="content">
+                    <label><input type="checkbox"> ★★★★★</label>
+                    <label><input type="checkbox"> ★★★★</label>
+                    <label><input type="checkbox"> ★★★</label>
+                    <label><input type="checkbox"> ★★</label>
+                </div>
+            </div>
+            <div class="filter-section" id="property-type-section">
+                <div class="heading" onclick="toggleCollapse('property-type-section')">
+                    <h3>PROPERTY TYPE</h3>
+                    <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="content">
+                    <label><input type="checkbox"> Apartments (11)</label>
+                    <label><input type="checkbox"> Hotels (12)</label>
+                    <label><input type="checkbox"> Homestays (10)</label>
+                    <div id="property-type-more" class="more-options">
+                        <label><input type="checkbox"> Villas (12)</label>
+                        <label><input type="checkbox"> Boats (9)</label>
+                        <label><input type="checkbox"> Motels (12)</label>
+                        <label><input type="checkbox"> Resorts (11)</label>
+                        <label><input type="checkbox"> Lodges (9)</label>
+                        <label><input type="checkbox"> Holiday homes (12)</label>
+                        <label><input type="checkbox"> Cruises (10)</label>
+                    </div>
+                    <span class="show-toggle" onclick="toggleSection('property-type')">SHOW ALL</span>
+                </div>
+            </div>
+            <div class="filter-section" id="facilities-section">
+                <div class="heading" onclick="toggleCollapse('facilities-section')">
+                    <h3>FACILITIES</h3>
+                    <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="content">
+                    <label><input type="checkbox"> Wake-up call (9)</label>
+                    <label><input type="checkbox"> Car hire (10)</label>
+                    <label><input type="checkbox"> Bicycle hire (9)</label>
+                    <div id="facilities-more" class="more-options">
+                        <label><input type="checkbox"> Flat TV (11)</label>
+                        <label><input type="checkbox"> Laundry and dry cleaning (12)</label>
+                        <label><input type="checkbox"> Internet – Wifi (12)</label>
+                        <label><input type="checkbox"> Coffee and tea (12)</label>
+                    </div>
+                    <span class="show-toggle" onclick="toggleSection('facilities')">SHOW ALL</span>
+                </div>
+            </div>
+            <div class="filter-section" id="hotel-service-section">
+                <div class="heading" onclick="toggleCollapse('hotel-service-section')">
+                    <h3>HOTEL SERVICE</h3>
+                    <span class="chevron"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="content">
+                    <label><input type="checkbox"> Havana Lobby bar (10)</label>
+                    <label><input type="checkbox"> Fiesta Restaurant (10)</label>
+                    <label><input type="checkbox"> Hotel transport services (6)</label>
+                    <div id="hotel-service-more" class="more-options">
+                        <label><input type="checkbox"> Free luggage deposit (10)</label>
+                        <label><input type="checkbox"> Laundry Services (10)</label>
+                        <label><input type="checkbox"> Pets welcome (9)</label>
+                        <label><input type="checkbox"> Tickets (5)</label>
+                    </div>
+                    <span class="show-toggle" onclick="toggleSection('hotel-service')">SHOW ALL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>11 hotels found</h2>
+                <div class="sort-by">
+                    <span>Sort by:</span>
+                    <select>
+                        <option>Recommended</option>
+                        <option>Price (Low to high)</option>
+                        <option>Price (High to low)</option>
+                        <option>Rating (High to low)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Hotel Cards -->
+            <a href="hotel_details.html" style="text-decoration: none;">
+                <div class="hotel-card">
+                    <!-- <div class="hotel-card" onclick="navigateToHotelDetails('dylan-hotel')"> -->
+                    <img src="https://placehold.co/200x150" alt="Hotel Image">
+                    <article>
+                        <div class="top-section">
+                            <span class="featured">FEATURED</span>
+                            <span class="favorite"><i class="far fa-heart"></i></span>
+                            <h3>Dylan Hotel</h3>
+                            <div class="stars">★★★★★</div>
+                            <div class="location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                New York, United States - <a href="#">View on map</a>
+                            </div>
+                            <div class="facilities">
+                                <i class="fas fa-concierge-bell"></i>
+                                <div>Wake-up call</div>
+                                <div>Car hire</div>
+                                <div>Bicycle hire</div>
+                            </div>
+                            <div class="buttons">
+                                <div class="btn-free">Free breakfast</div>
+                                <div class="btn-vip">Service VIP</div>
+                            </div>
+                        </div>
+                        <div class="bottom-section">
+                            <div class="rating">
+                                <div class="score">4.0/5</div>
+                                <div class="text">Very Good</div>
+                                <div class="reviews">(5 reviews)</div>
+                            </div>
+                            <div class="price">from £550 /night</div>
+                        </div>
+                    </article>
+                </div>
+            </a>
+
+            <div class="hotel-card">
+                <img src="https://placehold.co/200x150" alt="Hotel Image">
+                <article>
+                    <div class="top-section">
+                        <span class="featured">FEATURED</span>
+                        <span class="favorite"><i class="far fa-heart"></i></span>
+                        <h3>Parian Holiday Villas</h3>
+                        <div class="stars">★★★★★</div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Paris - <a href="#">View on map</a>
+                        </div>
+                        <div class="facilities">
+                            <i class="fas fa-concierge-bell"></i>
+                            <div>Wake-up call</div>
+                            <div>Car hire</div>
+                            <div>Bicycle hire</div>
+                        </div>
+                        <div class="buttons">
+                            <div class="btn-free">Free breakfast</div>
+                            <div class="btn-vip">Service VIP</div>
+                        </div>
+                    </div>
+                    <div class="bottom-section">
+                        <div class="rating">
+                            <div class="score">4.7/5</div>
+                            <div class="text">Excellent</div>
+                            <div class="reviews">(3 reviews)</div>
+                        </div>
+                        <div class="price">from £550 /night</div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="hotel-card">
+                <img src="https://placehold.co/200x150" alt="Hotel Image">
+                <article>
+                    <div class="top-section">
+                        <span class="favorite"><i class="far fa-heart"></i></span>
+                        <h3>The May Fair Hotel</h3>
+                        <div class="stars">★★★★★</div>
+                        <div class="location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Paris - <a href="#">View on map</a>
+                        </div>
+                        <div class="facilities">
+                            <i class="fas fa-concierge-bell"></i>
+                            <div>Car hire</div>
+                            <div>Bicycle hire</div>
+                            <div>Flat TV</div>
+                        </div>
+                        <div class="buttons">
+                            <div class="btn-free">Free breakfast</div>
+                            <div class="btn-vip">Service VIP</div>
+                        </div>
+                    </div>
+                    <div class="bottom-section">
+                        <div class="rating">
+                            <div class="score">4.3/5</div>
+                            <div class="text">Very Good</div>
+                            <div class="reviews">(3 reviews)</div>
+                        </div>
+                        <div class="price">from £550 /night</div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <span>Showing 1 - 9 of 11 hotels</span>
+                <button>
+                    < </button>
+                        <button>1</button>
+                        <button>2</button>
+                        <button>></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let adults = 1;
+        let children = 0;
+
+        function toggleGuestsDropdown() {
+            const dropdown = document.getElementById('guests-dropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function updateGuests(type, change) {
+            if (type === 'adults') {
+                adults = Math.max(1, adults + change);
+                document.getElementById('adults-count').textContent = adults;
+                document.getElementById('adults-minus').disabled = adults === 1;
+            } else if (type === 'children') {
+                children = Math.max(0, children + change);
+                document.getElementById('children-count').textContent = children;
+                document.getElementById('children-minus').disabled = children === 0;
+            }
+            document.getElementById('guests-display').textContent = `${adults} Adult${adults > 1 ? 's' : ''} - ${children} Child${children !== 1 ? 'ren' : ''}`;
+        }
+
+        function toggleSection(sectionId) {
+            const moreOptions = document.getElementById(`${sectionId}-more`);
+            const toggleText = moreOptions.parentElement.querySelector('.show-toggle');
+            moreOptions.classList.toggle('show');
+            toggleText.textContent = moreOptions.classList.contains('show') ? 'SHOW LESS' : 'SHOW ALL';
+        }
+
+        function toggleCollapse(sectionId) {
+            const section = document.getElementById(sectionId);
+            const chevron = section.querySelector('.chevron i');
+            section.classList.toggle('collapsed');
+            if (section.classList.contains('collapsed')) {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-up');
+            } else {
+                chevron.classList.remove('fa-chevron-up');
+                chevron.classList.add('fa-chevron-down');
+            }
+        }
+
+
+        function toggleGuestsDropdown() {
+            const dropdown = document.getElementById('guests-dropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        function updateGuests(type, change) {
+            const adultsCount = document.getElementById('adults-count');
+            const childrenCount = document.getElementById('children-count');
+            const adultsMinus = document.getElementById('adults-minus');
+            const childrenMinus = document.getElementById('children-minus');
+            const guestsDisplay = document.getElementById('guests-display');
+
+            let adults = parseInt(adultsCount.textContent);
+            let children = parseInt(childrenCount.textContent);
+
+            if (type === 'adults') {
+                adults = Math.max(1, adults + change);
+            } else if (type === 'children') {
+                children = Math.max(0, children + change);
+            }
+
+            adultsCount.textContent = adults;
+            childrenCount.textContent = children;
+
+            adultsMinus.disabled = adults <= 1;
+            childrenMinus.disabled = children <= 0;
+
+            guestsDisplay.textContent = `${adults} Adult${adults > 1 ? 's' : ''} - ${children} Child${children !== 1 ? 'ren' : ''}`;
+        }
+
+        document.addEventListener('click', function (event) {
+            const guestsSection = document.querySelector('.guests-section');
+            if (!guestsSection.contains(event.target)) {
+                const dropdown = document.getElementById('guests-dropdown');
+                dropdown.classList.remove('active');
+            }
+        });
+        // function navigateToHotelDetails(hotelId) {
+        //     // Navigate to the hotel details page using the hotelId
+        //     window.location.href = `hotel_details.html`;
+        // }
+    </script>
+</body>
+
+</html>

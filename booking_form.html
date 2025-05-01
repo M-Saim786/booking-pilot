@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+ <link rel="stylesheet" href="./booking_form.css">
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="left-section">
+            <form id="booking-form" onsubmit="confirmBooking(event)">
+                <h2>Let us know who you are</h2>
+                <label class="checkbox-label">
+                    <input type="checkbox"> Create a new account?
+                </label>
+
+                <div class="guest-content visible">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" placeholder="email@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" name="phone" placeholder="Your Phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Address line 1</label>
+                            <input type="text" placeholder="Address line 1">
+                        </div>
+                        <div class="form-group">
+                            <label>Address line 2</label>
+                            <input type="text" placeholder="Address line 2">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>State/Province/Region</label>
+                            <input type="text" placeholder="State/Province/Region">
+                        </div>
+                        <div class="form-group">
+                            <label>Zip code/Postal code</label>
+                            <input type="text" placeholder="Zip code/Postal code">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select name="country" required>
+                                <option value="">-- Select --</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="US">United States</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" placeholder="Your City">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Special Requirements</label>
+                        <textarea placeholder="Special Requirements"></textarea>
+                    </div>
+                </div>
+
+                <div class="guest-section">
+                    <div class="guest-header" onclick="toggleGuestForm(1)">
+                        <h3>Guest #1:</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="guest-content visible" id="guest-content-1">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name="guest1-firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="guest1-lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="guest1-email" placeholder="email@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" name="guest1-phone" placeholder="Your Phone" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="guest-forms"></div>
+                <div class="card-section">
+                    <h2>Your Card Information</h2>
+                    <label class="checkbox-label">
+                        <input type="radio" name="payment" value="offline" checked required> Offline Payment
+                    </label>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" name="terms" required>
+                    <span>By continuing, you agree to the <a href="#">Terms and Conditions</a></span>
+                </div>
+                <button class="btn-confirm" type="submit">Confirm Booking</button>
+            </form>
+        </div>
+        <div class="right-section">
+            <img src="https://bookingpilotsv2.zotecsoft.work/uploads/mytravel/space/space-2.jpg" alt="Dylan Hotel">
+            <h3>Dylan Hotel</h3>
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Regal Cinemas Battery</span>
+            </div>
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapsible('booking-details')">
+                    <h4>Booking Detail</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="collapsible-content visible" id="booking-details">
+                    <div class="price-row">
+                        <span>Start date:</span>
+                        <span>05/02/2025</span>
+                    </div>
+                    <div class="price-row">
+                        <span>End date:</span>
+                        <span>05/09/2025</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Nights:</span>
+                        <span>7</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Adults:</span>
+                        <span id="adults-count">1</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Children:</span>
+                        <span id="children-count">3</span>
+                    </div>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapsible('payment-details')">
+                    <h4>Payment</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="collapsible-content visible" id="payment-details">
+                    <div class="price-row">
+                        <span>Room Kerama Islands</span>
+                        <span id="room-price">£4,900</span>
+                    </div>
+                    <div class="price-row">
+                        <span>× <span id="total-rooms">2</span></span>
+                    </div>
+                    <div class="price-row">
+                        <span>Service fee <i class="fas fa-info-circle"></i></span>
+                        <span id="service-fee">£100</span>
+                    </div>
+                    <div class="coupon-section">
+                        <input type="text" placeholder="Coupon code">
+                        <button>Apply</button>
+                    </div>
+                    <br>
+                    <div class="price-row price-total">
+                        <span>Total:</span>
+                        <span id="total-price">£5,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const adults = parseInt(localStorage.getItem('adults') || '1');
+        const children = parseInt(localStorage.getItem('children') || '3');
+        const totalGuests = adults + children;
+        const totalRooms = parseInt(localStorage.getItem('totalRooms') || '2');
+        const basePrice = parseInt(localStorage.getItem('basePrice') || '4900');
+        const serviceFee = 100;
+        const vip = localStorage.getItem('vip') === 'true';
+        const breakfast = localStorage.getItem('breakfast') === 'true';
+        let totalPrice = (basePrice * totalRooms) + serviceFee + (vip ? 200 : 0) + (breakfast ? 100 : 0);
+
+        function generateGuestForms() {
+            const guestForms = document.getElementById('guest-forms');
+            for (let i = 2; i <= totalGuests; i++) {
+                const guestSection = document.createElement('div');
+                guestSection.className = 'guest-section';
+                guestSection.innerHTML = `
+                    <div class="guest-header" onclick="toggleGuestForm(${i})">
+                        <h3>Guest #${i}:</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="guest-content" id="guest-content-${i}">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" name="guest${i}-firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" name="guest${i}-lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="guest${i}-email" placeholder="email@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="tel" name="guest${i}-phone" placeholder="Your Phone" required>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                guestForms.appendChild(guestSection);
+            }
+        }
+
+        function toggleGuestForm(guestId) {
+            for (let i = 1; i <= totalGuests; i++) {
+                const content = document.getElementById(`guest-content-${i}`);
+                if (i === guestId) {
+                    content.classList.toggle('visible');
+                } else {
+                    content.classList.remove('visible');
+                }
+            }
+        }
+
+        function toggleCollapsible(sectionId) {
+            const content = document.getElementById(sectionId);
+            content.classList.toggle('visible');
+        }
+
+        function confirmBooking(event) {
+            event.preventDefault();
+            window.location.href = 'booking_success.html';
+            // alert('Booking confirmed successfully!');
+            document.getElementById('booking-form').reset();
+        }
+
+        document.getElementById('adults-count').textContent = adults;
+        document.getElementById('children-count').textContent = children;
+        document.getElementById('total-rooms').textContent = totalRooms;
+        document.getElementById('room-price').textContent = `£${basePrice.toLocaleString()}`;
+        document.getElementById('service-fee').textContent = `£${serviceFee}`;
+        document.getElementById('total-price').textContent = `£${totalPrice.toLocaleString()}`;
+
+        generateGuestForms();
+    </script>
+</body>
+</html>
